@@ -9,7 +9,7 @@ import SwiftUICore
 import SwiftUI
 import AVFoundation
 
-struct newballoongamwtwo: View {  // Renamed to ContentViewTwo
+struct ContentView: View {  // Renamed to ContentViewTwo
     var body: some View {
         NavigationStack {
             ZStack {
@@ -17,7 +17,7 @@ struct newballoongamwtwo: View {  // Renamed to ContentViewTwo
                 Image("balloongamebackground")
                     .resizable()
                     .scaledToFill()
-                    .imageScale(.large)
+                    .imageScale(.medium)
                     .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensuring the image takes the whole space
                     .clipped() // Prevent overflow
                 
@@ -28,9 +28,9 @@ struct newballoongamwtwo: View {  // Renamed to ContentViewTwo
                             Image("greencolorsbutton") // Replace this with your desired image
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 100, height: 100) // Adjust the size as needed
+                                .frame(width: 150, height: 700) // Adjust the size as needed
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: 5))
+                                //.background(RoundedRectangle(cornerRadius: 5))
                         }
                         
                         // Second NavigationLink
@@ -38,9 +38,9 @@ struct newballoongamwtwo: View {  // Renamed to ContentViewTwo
                             Image("purplenumbersbutton") // Replace this with your desired image
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 100, height: 100) // Adjust the size as needed
+                                .frame(width: 150, height: 700) // Adjust the size as needed
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: 5))
+                        //.background(RoundedRectangle(cornerRadius: 5))
                         }
                     }
                     .padding() // Padding for the HStack
@@ -50,19 +50,33 @@ struct newballoongamwtwo: View {  // Renamed to ContentViewTwo
                         Image("redalphabetbutton") // Replace this with your desired image
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 100, height: 100) // Adjust the size as needed
+                            .frame(width: 200, height: 700) // Adjust the size as needed
                             .padding()
-                            .background(RoundedRectangle(cornerRadius: 5))
+                            //.background(RoundedRectangle(cornerRadius: 5))
                     }
                 }
                 .padding() // Padding for the VStack
+                
+                // fourth NavigationLink
+                NavigationLink(destination: Level5())
+                {
+                    Image("orangeshapesbutton") // Replace this with your desired image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 700) // Adjust the size as needed
+                        .padding()
+                        //.background(RoundedRectangle(cornerRadius: 5))
+                }
+            }
+            .padding() // Padding for the VStack
             }
         }
     }
-}
+  
+
 
 #Preview {
-    newballoongamwtwo()  // Updated preview to match the new name
+    ContentView()  // Updated preview to match the new name
 }
 
 

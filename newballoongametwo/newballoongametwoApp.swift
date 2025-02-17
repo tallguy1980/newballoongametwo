@@ -12,7 +12,7 @@ struct newballoongametwoApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack{
-                Slashview()
+              //  Slashview()
                 ContentView()
                 
                

@@ -1,8 +1,8 @@
 //
-//  levelfour.swift
+//  level5.swift
 //  newballoongametwo
 //
-//  Created by DUJUAN PUGH on 2/4/25.
+//  Created by DUJUAN PUGH on 2/7/25.
 //
 
 import Foundation
@@ -11,30 +11,30 @@ import SwiftUI
 import AVFoundation
 
 
-struct Balloon3: Identifiable {
+struct Balloon: Identifiable {
     var id = UUID()
     var position: CGPoint
     var size: CGFloat
     var color: String // To differentiate between red, purple, orange, green, and blue balloons
 }
 
-struct Levelfour: View {
+struct Level5: View {
     @State private var balloons: [Balloon] = []
     @State private var timer: Timer?
     @State private var score: Int = 0  // Add score variable
     @State private var audioPlayer: AVAudioPlayer? // Declare audioPlayer as a state variable
-
+    @State private var gamestarted: Bool = false
 
     var body: some View {
-        ZStack {Image("balloongamebackgroundfour")
-                .resizable(capInsets: .init(top: -500, leading: -500, bottom: 100, trailing: 100))
+        ZStack {Image("balloongamebackgroundfive")
+                .resizable(capInsets: .init(top: 100, leading: -500, bottom: 100, trailing: 100))
                 .scaledToFill()
                 .imageScale(.large)
                 .foregroundStyle(.tint)
         
-            // Loop through the alphabet array to display each balloon
+            // Loop through the shape array to display each balloon
             ForEach(balloons) { balloon in
-                Image(balloon.color) // Choose alphabet image based on color
+                Image(balloon.color) // Choose shape image based on color
                     .resizable()
                     .scaledToFit()
                     .frame(width: balloon.size, height: balloon.size)
@@ -62,17 +62,20 @@ struct Levelfour: View {
             Button(action: {
                 // Action to perform when the button is tapped
                 print("Button tapped")
+                gamestarted = true
+                
+                startBalloonGeneration()
             }) {
                 Text("Press Start")
                     .font(.largeTitle)
-                    .foregroundColor(.purple)
+                    .foregroundColor(gamestarted ? .clear : .purple)
                     .padding()
             }
+        
+            }
         }
-        .onAppear {
-            startBalloonGeneration()
-        }
-    }
+        
+    
     
     // Starts generating new balloons every second
     private func startBalloonGeneration() {
@@ -83,13 +86,13 @@ struct Levelfour: View {
     
     // Adds a new balloon with random position, size, and color
     private func addBalloon() {
-        let randomX = CGFloat.random(in: 100...UIScreen.main.bounds.width - 100)
+        let randomX = CGFloat.random(in: 100...UIScreen.main.bounds.width - 80)
         _ = UIScreen.main.bounds.minY
         let randomSize = CGFloat.random(in: 200...700) // Balloon size between 200 and 700
         
         // Randomly select a balloon color from the array
-        let balloonColors = ["purplea", "orangeb", "greenc", "blued", "rede", "yellowf", "purpleg", "orangeh", "greeni", "orangej","orangek", "yellowl", "greenm", "bluen", "orangeo","purplep","orangeq","oranger","greens","purplet","orangeu","redv","orangex","greeny","bluez"]
-        let randomColor = balloonColors.randomElement() ?? "redballoon.png" // Default to red if selection fails
+        let balloonColors = ["square","largerectangle","diamond","rhomboid","star","pentagon","hexagon","circle","oval","triangle"]
+        let randomColor = balloonColors.randomElement() ?? "circle" // Default to red if selection fails
 
         let initialY = UIScreen.main.bounds.maxY + randomSize / 2
                 let newBalloon = Balloon(position: CGPoint(x: randomX, y: initialY), size: randomSize, color: randomColor)
@@ -138,8 +141,9 @@ struct Levelfour: View {
                 balloons.remove(at: index)
         }
     }
+
 }
 
 #Preview {
-    Levelfour()
+    Level5()
 }

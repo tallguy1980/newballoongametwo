@@ -22,6 +22,7 @@ struct LevelThree: View {
     @State private var timer: Timer?
     @State private var score: Int = 0  // Add score variable
     @State private var audioPlayer: AVAudioPlayer? // Declare audioPlayer as a state variable
+    @State private var gamestarted: Bool = false
 
         
     var body: some View {
@@ -30,7 +31,7 @@ struct LevelThree: View {
                 .scaledToFill()
                 .imageScale(.large)
                 .foregroundStyle(.tint)
-        
+            
             // Loop through the numbers array to display each balloon
             ForEach(balloons) { balloon in
                 Image(balloon.color) // Choose balloon image based on number
@@ -41,7 +42,7 @@ struct LevelThree: View {
                     .onTapGesture {
                         removeBalloon(balloon)// Call removeBalloon when tapped
                         score += 1 // Increment score when balloon is tapped
-                    
+                        
                     }
                     .animation(.linear(duration: 2).repeatForever(autoreverses: false), value: balloon.position)
             }
@@ -62,28 +63,30 @@ struct LevelThree: View {
             Button(action: {
                 // Action to perform when the button is tapped
                 print("Button tapped")
+                gamestarted = true
+                
+                startBalloonGeneration()
             }) {
                 Text("Press Start")
                     .font(.largeTitle)
-                    .foregroundColor(.purple)
+                    .foregroundColor(gamestarted ? .clear : .purple)
                     .padding()
             }
-        }
-        .onAppear {
-            startBalloonGeneration()
+        
+           
         }
     }
     
     // Starts generating new balloons every second
     private func startBalloonGeneration() {
-        timer = Timer.scheduledTimer(withTimeInterval: 7, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { _ in
             addBalloon()
         }
     }
     
     // Adds a new balloon with random position, size, and color
     private func addBalloon() {
-        let randomX = CGFloat.random(in: 100...UIScreen.main.bounds.width - 100)
+        let randomX = CGFloat.random(in: 100...UIScreen.main.bounds.width - 80)
         _ = UIScreen.main.bounds.minY
         let randomSize = CGFloat.random(in: 200...700) // Balloon size between 200 and 700
         

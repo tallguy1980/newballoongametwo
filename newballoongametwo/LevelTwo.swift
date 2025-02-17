@@ -10,19 +10,21 @@ import SwiftUICore
 import SwiftUI
 import AVFoundation
 
-struct Balloon: Identifiable {
-    var id = UUID()
-    var position: CGPoint
-    var size: CGFloat
-    var color: String // To differentiate between red, purple, orange, green, and blue balloons
-}
+//struct Balloon: Identifiable {
+//    var id = UUID()
+//    var position: CGPoint
+//    var size: CGFloat
+//    var color: String // To differentiate between red, purple, orange, green, and blue balloons
+//}
 
 struct LevelTwo: View {
     @State private var balloons: [Balloon] = []
     @State private var timer: Timer?
-    @State private var score: Int = 10  // Add score variable
+    @State private var score: Int = 0  // Add score variable
     @State private var audioPlayer: AVAudioPlayer? // Declare audioPlayer as a state variable
+    @State private var gamestarted: Bool = false
 
+   
     var body: some View {
         ZStack {
             Image("balloongamebackground2")
@@ -60,16 +62,18 @@ struct LevelTwo: View {
             Button(action: {
                 // Action to perform when the button is tapped
                 print("Button tapped")
+                gamestarted = true
+                
+                startBalloonGeneration()
             }) {
                 Text("Press Start")
                     .font(.largeTitle)
-                    .foregroundColor(.purple)
+                    .foregroundColor(gamestarted ? .clear : .purple)
                     .padding()
             }
+        
         }
-        .onAppear {
-            startBalloonGeneration()
-        }
+        
     }
     
     // Starts generating new balloons every second
@@ -81,7 +85,7 @@ struct LevelTwo: View {
     
     // Adds a new balloon with random position, size, and color
     private func addBalloon() {
-        let randomX = CGFloat.random(in: 100...UIScreen.main.bounds.width - 100)
+        let randomX = CGFloat.random(in: 100...UIScreen.main.bounds.width - 80)
         _ = UIScreen.main.bounds.minY
         let randomSize = CGFloat.random(in: 200...700) // Balloon size between 200 and 700
         

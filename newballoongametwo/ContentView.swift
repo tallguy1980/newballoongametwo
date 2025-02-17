@@ -15,22 +15,23 @@ struct ContentView: View {  // Renamed to ContentViewTwo
             ZStack {
                 // Background image setup
                 Image("balloongamebackground")
-                    .resizable()
-                    .scaledToFill()
-                    .imageScale(.medium)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensuring the image takes the whole space
-                    .clipped() // Prevent overflow
-                
+                    .ignoresSafeArea()
+//                    .resizable()
+//                    .scaledToFill()
+//                    .imageScale(.medium)
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensuring the image takes the whole space
+//                    .clipped() // Prevent overflow
                 VStack {
                     HStack {
+                        //                    HStack {
                         // First NavigationLink
                         NavigationLink(destination: LevelTwo()) {
                             Image("greencolorsbutton") // Replace this with your desired image
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 150, height: 700) // Adjust the size as needed
-                                .padding()
-                                //.background(RoundedRectangle(cornerRadius: 5))
+                                .frame(width: 300, height: 300) // Adjust the size as needed
+                            //                                .padding()
+                            //.background(RoundedRectangle(cornerRadius: 5))
                         }
                         
                         // Second NavigationLink
@@ -38,37 +39,42 @@ struct ContentView: View {  // Renamed to ContentViewTwo
                             Image("purplenumbersbutton") // Replace this with your desired image
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 150, height: 700) // Adjust the size as needed
-                                .padding()
-                        //.background(RoundedRectangle(cornerRadius: 5))
+                                .frame(width: 300, height: 300) // Adjust the size as needed
+                            //                                .padding()
+                            //.background(RoundedRectangle(cornerRadius: 5))
                         }
+                        //                    }
+                        //                    .padding() // Padding for the HStack
+                        
+                        // Third NavigationLink
+                        NavigationLink(destination: Levelfour()) {
+                            Image("redalphabetbutton") // Replace this with your desired image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 300, height: 300) // Adjust the size as needed
+                            //                            .padding()
+                            //.background(RoundedRectangle(cornerRadius: 5))
+                        }
+                        
+                        // fourth NavigationLink
+                        NavigationLink(destination: Level5())
+                        {
+                            Image("orangeshapesbutton") // Replace this with your desired image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 300, height: 300) // Adjust the size as needed
+                            //                            .padding()
+                            //.background(RoundedRectangle(cornerRadius: 5))
+                        }
+                        
                     }
                     .padding() // Padding for the HStack
-                    
-                    // Third NavigationLink
-                    NavigationLink(destination: Levelfour()) {
-                        Image("redalphabetbutton") // Replace this with your desired image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 200, height: 700) // Adjust the size as needed
-                            .padding()
-                            //.background(RoundedRectangle(cornerRadius: 5))
-                    }
-                }
-                .padding() // Padding for the VStack
-                
-                // fourth NavigationLink
-                NavigationLink(destination: Level5())
-                {
-                    Image("orangeshapesbutton") // Replace this with your desired image
+                    Image(.walla)
                         .resizable()
-                        .scaledToFit()
-                        .frame(width: 150, height: 700) // Adjust the size as needed
-                        .padding()
-                        //.background(RoundedRectangle(cornerRadius: 5))
+                        .frame(width: 300, height: 300)
                 }
             }
-            .padding() // Padding for the VStack
+//            .padding() // Padding for the VStack
             }
         }
     }

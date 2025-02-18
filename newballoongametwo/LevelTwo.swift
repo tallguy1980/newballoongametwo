@@ -23,9 +23,9 @@ struct LevelTwo: View {
     @State private var score: Int = 0  // Add score variable
     @State private var audioPlayer: AVAudioPlayer? // Declare audioPlayer as a state variable
     @State private var gamestarted: Bool = false
-
    
     var body: some View {
+
         ZStack {
             Image("balloongamebackground2")
                 .resizable(capInsets: .init(top: -500, leading: -500, bottom: 100, trailing: 100))
@@ -78,7 +78,7 @@ struct LevelTwo: View {
     
     // Starts generating new balloons every second
     private func startBalloonGeneration() {
-        timer = Timer.scheduledTimer(withTimeInterval: 7, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 6, repeats: true) { _ in
             addBalloon()
         }
     }
@@ -120,9 +120,11 @@ struct LevelTwo: View {
                 audioPlayer?.play()
             } catch {
                 print("Error playing pop sound: \(error)")
+              
             }
         }
     }
+
     
     // Removes balloon when tapped
     private func removeBalloon(_ balloon: Balloon) {

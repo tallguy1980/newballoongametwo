@@ -13,6 +13,7 @@ struct ContentView: View {  // Renamed to ContentViewTwo
     var body: some View {
         NavigationStack {
             ZStack {
+
                 // Background image setup
                 Image("balloongamebackground")
                     .ignoresSafeArea()
